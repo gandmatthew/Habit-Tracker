@@ -1,5 +1,5 @@
 .sticky {
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
 }
@@ -7,7 +7,6 @@
 .center-habitat {
   margin-top: 150px;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -16,6 +15,10 @@
   right: 0;
   bottom: 0;
   width: 100%;
+  position: absolute;
+}
+
+container {
   position: relative;
 }
 

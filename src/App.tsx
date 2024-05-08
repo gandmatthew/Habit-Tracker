@@ -5,30 +5,37 @@ import './App.css'
 import { Navbar } from './components/Navbar'
 import { Habitat } from './components/Habitat'
 import { Footer } from './components/Footer'
+import { Login } from './pages/Login'
+import { Home } from './pages/Home'
 
 function App() {
   return (
     <>
-      <div>
+      {/* <Home>
+        
+      </Home> */}
+      <div className="container">
         <div className='sticky'>
           <Navbar/>
         </div>
-        <div>
-          <div className='center-habitat'>
-            <Habitat/>
-          </div>
-          <p>Example</p>
-          <p>Example</p>
-          <p>Example</p>
-          <p>Example</p>
-          <p>Example</p>
-          <p>Example</p>
-          <p>Example</p>
-          <p>Example</p>
-          <div className='footer'>
-            <Footer/>
-          </div>
+
+        <div className='center-habitat'>
+          <Habitat/>
         </div>
+
+        <p>Example</p>
+        <p>Example</p>
+        <p>Example</p>
+        <p>Example</p>
+        <p>Example</p>
+        <p>Example</p>
+        <p>Example</p>
+        <p>Example</p>
+
+        <div className='footer'>
+          <Footer/>
+        </div>
+          
       </div>
     </>
   )
