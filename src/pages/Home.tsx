@@ -13,7 +13,6 @@ export const Home = () => {
             </div>
             <div className="right-box">
                 <div className="right-align">
-
                     <Login>
                     </Login>
                 </div>
