@@ -1,0 +1,32 @@
+.login__center {
+    position: absolute;
+    top: 30vh;
+    left: 30vw;
+}
+
+.login__left {
+    display: flex;
+    width: 65vw;
+    left: 0;
+    overflow: hidden;
+}
+
+.login__right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35vw;
+    overflow: hidden;
+    background: #363636;
+}
+
+.login__split {
+    right: 0;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    padding-top: 2vh;
+    overflow: hidden;
+}

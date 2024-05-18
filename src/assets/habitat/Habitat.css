@@ -1,24 +1,16 @@
-.habitat-box {
-    border-radius: 25px;
+.habitat__container {
+    /* border-radius: 25px; */
     background:	#FFFFFF;
     /* padding: 20px; */
     height: calc(var(--plane-height, 60) * 1vmin);
     width: calc(var(--plane-width, 60) * 1vmin);
 }
 
-.center {
+/* .habitat__center {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.habitat {
-    position: relative;
-    background: 	#818c3c;
-    height: calc(var(--plane-height, 45) * 1vmin);
-    width: calc(var(--plane-width, 45) * 1vmin);
-    transform: rotateX(calc(var(--rotate-x, -24) * 1deg)) rotateY(calc(var(--rotate-y, -24) * 1deg)) rotateX(90deg) translate3d(0, 0, 0)
-}
+} */
 
 /* .habitat::before {
     content: '';

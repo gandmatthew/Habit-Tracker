@@ -1,4 +1,6 @@
-.footer body {margin:0;}
+.footer body {
+  margin: 0;
+}
 
 .footer ul {
   list-style-type: none;
@@ -7,16 +9,16 @@
 }
 
 .footer li {
-  float: left;  
+  float: left;
   display: inline-flex;
-  margin-left: 10px;
+  margin-left: 1vw;
 }
 
 .footer li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 1.4vh 1.6vw;
   text-decoration: none;
 }
 

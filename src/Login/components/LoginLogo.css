@@ -1,0 +1,32 @@
+.loginLogo__slide-right {
+    width: 100vw;
+    overflow: hidden;
+    font-size: 2vh;
+}
+
+.loginLogo__slide-first {
+    animation: 1.5s slide-right 1s forwards;
+    transform: translateX(-100vw);
+    margin-left: 1vw;
+    font-size: 4vh;
+}
+
+.loginLogo__slide-second {
+    animation: 1.5s slide-right 2s forwards;
+    transform: translateX(-100vw);
+    margin-left: 1vw;
+    font-size: 4vh;
+}
+
+.loginLogo__slide-third {
+    animation: 1.5s slide-right 3s forwards;
+    transform: translateX(-100vw);
+    margin-left: 1vw;
+    font-size: 4vh;
+}
+
+@keyframes slide-right {
+    to {
+        transform: translateX(0);
+    }
+}

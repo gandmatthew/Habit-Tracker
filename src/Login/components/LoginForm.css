@@ -1,0 +1,18 @@
+.p {
+    font-size: 1.6vh;
+    font-family: "Roboto", sans-serif;
+}
+
+.loginForm__form {
+    margin: 1vh 0 1vh 0;
+    padding: 1.5vh;
+    font-size: 1.6vh;
+    border: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.loginForm__blue {
+    color: lightblue;
+    font-size: 1.6vh;
+    font-family: "Roboto", sans-serif;
+}

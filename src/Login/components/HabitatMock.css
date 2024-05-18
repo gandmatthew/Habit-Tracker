@@ -1,0 +1,15 @@
+.habitatMock__plane {
+    background: #818c3c;
+    height: calc(var(--plane-height, 45) * 1vmin);
+    width: calc(var(--plane-width, 45) * 1vmin);
+    transform: rotateX(calc(var(--rotate-x, -24) * 1deg)) rotateY(calc(var(--rotate-y, -24) * 1deg)) rotateX(90deg) translate3d(0, 0, 0);
+    animation: spin 50s infinite linear;
+}
+@keyframes spin {
+    0% {
+        transform: rotateX(calc(var(--rotate-x, -24) * 1deg)) rotateY(calc(var(--rotate-y, -24) * 1deg)) rotateX(90deg) translate3d(0, 0, 0);
+    }
+    100% {
+        transform: rotateX(calc(var(--rotate-x, -24) * 1deg)) rotateY(calc(var(--rotate-y, -24) * 90deg)) rotateX(90deg) translate3d(0, 0, 0);
+    }
+}
