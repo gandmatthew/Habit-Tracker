@@ -1,19 +1,19 @@
 import { Navbar } from '../assets/navbar/Navbar'
-import './Friends.css'
+import styles from './Friends.module.css'
 
 export const Friends = () => {
     return (
         <div>
 
-            <div className="explore__sticky">
+            <div className={styles.sticky}>
                 <Navbar></Navbar>
             </div>
-            <div className='explore__center'>
+            <div className={styles.center}>
 
-                <div className="friends__modal-content">
+                <div className={styles.modalContent}>
                     <p>
-                        <span className="search-icon">🔎</span>
-                        <input type="text" placeholder="Search for a friend" name="search-friend" className="search-input"/>
+                        <span className={styles.searchIcon}>🔎</span>
+                        <input type="text" placeholder="Search for a friend" name="search-friend" className={styles.searchInput}/>
                     </p>
                     <p>...</p>
                     <p>...</p>

@@ -1,0 +1,5 @@
+.container {
+    background:	#FFFFFF;
+    height: calc(var(--plane-height, 60) * 1vmin);
+    width: calc(var(--plane-width, 60) * 1vmin);
+}

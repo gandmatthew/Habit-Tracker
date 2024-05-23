@@ -1,17 +1,17 @@
-.explore__center {
+.center {
   display: grid;
   justify-content: center;
   align-content: center;
   margin-top: 15vh;
 }
 
-.explore__sticky {
+.sticky {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
 }
 
-.explore__buttons {
+.buttons {
   margin-top: 1vh;
 }

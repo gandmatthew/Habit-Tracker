@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './Contact.css';
+import { useState } from 'react';
+import styles from './Contact.module.css'
 
 export const Contact = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,14 +12,14 @@ export const Contact = () => {
         <>
             <button onClick={toggleModal}>Contact</button>
             {isOpen && (
-                <div id="contactModal" className="modal">
-                    <div className="modal-content">
-                        <span className="close" onClick={toggleModal}>&times;</span>
+                <div id="contactModal" className={styles.modal}>
+                    <div className={styles.modalContent}>
+                        <span className={styles.close} onClick={toggleModal}>&times;</span>
                         <p>Email Address 📧</p>
-                        <input type="text" placeholder="anteater@uci.edu" name="email" required/>
+                        <input type="text" placeholder="anteater@uci.edu" name="email" required className={styles.input}/>
                         <p>Description ❓</p>
-                        <textarea name="subject" placeholder=""></textarea>
-                        <button className="submit-button" onClick={toggleModal}>Submit</button>
+                        <textarea name="subject" placeholder="" className={styles.textarea}></textarea>
+                        <button className={styles.submitButton} onClick={toggleModal}>Submit</button>
                     </div>
                 </div>
             )}

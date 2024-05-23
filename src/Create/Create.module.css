@@ -1,4 +1,4 @@
-.create__sticky {
+.sticky {
     position: absolute;
     top: 0;
     left: 0;
@@ -6,16 +6,16 @@
     z-index: 2;
 }
 
-.create__left {
+.left {
     display: flex;
-    width: 65vw;
+    width: 60vw;
     position: relative;
     top: 0;
     left: 0;
     overflow: hidden;
 }
 
-.create__right {
+.right {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,7 +25,7 @@
     position: relative;
 }
 
-.create__split {
+.split {
     position: fixed;
     right: 0;
     height: 100vh;
@@ -36,11 +36,11 @@
     overflow: hidden;
 }
 
-.center__sticky {
+/* .sticky {
     position: fixed;
     top: 0;
     width: 100vw;
     z-index: 3;
     background: white;
     text-align: center;
-}
+} */

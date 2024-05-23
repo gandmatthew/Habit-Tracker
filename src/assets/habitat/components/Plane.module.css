@@ -1,4 +1,4 @@
-.plane__plane {
+.plane {
     position: relative;
     background: 	#818c3c;
     /* height: calc(var(--plane-height, 45) * 1vmin);

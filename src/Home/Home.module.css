@@ -1,17 +1,17 @@
-.home__sticky {
+.sticky {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
 }
 
-.home__center {
+.center {
     margin-top: 15vh;
     display: flex;
     justify-content: center;
 }
 
-.home__footer {
+.footer {
     position: fixed;
     left: 0;
     bottom: 0;

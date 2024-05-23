@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { Habitat } from "../assets/habitat/Habitat";
 import { Plane } from "../assets/habitat/components/Plane";
 import { Navbar } from "../assets/navbar/Navbar";
-import "./Create.css"
+import styles from "./Create.module.css"
 
 interface SaplingCoordinatesType {
     x: any;
@@ -22,13 +22,13 @@ export const Create = () => {
 
     return (
         <div>
-            <div className="center__sticky">
+            <div className={styles.sticky}>
                 <Navbar></Navbar>
             </div>
-            <div className="create__split create__left">
-                <Habitat containerHeight="100" containerWidth="100"></Habitat>
+            <div className={`${styles.split} ${styles.left}`}>
+                <Habitat containerHeight="100" containerWidth="150"></Habitat>
             </div>
-            <div className="create__split create__right">
+            <div className={`${styles.split} ${styles.right}`}>
                 Hello World
             </div>
         </div>

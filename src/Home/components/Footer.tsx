@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
-import './Footer.css';
 import { Contact } from '../../assets/navbar/components/Contact';
 import { About } from '../../assets/navbar/components/About';
 
+import styles from './Footer.module.css'
+
 export const Footer = () => {
     return (
-        <div className="footer">
+        <div className={styles.footer}>
             <ul>
-                <li className="li-right"><About/></li>
-                <li className="li-right"><Contact/></li>
+                <li className={styles.liRight}><About/></li>
+                <li className={styles.liRight}><Contact/></li>
             </ul>
         </div>
     )

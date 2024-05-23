@@ -1,5 +1,4 @@
-import './Habitat.css';
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+import styles from './Habitat.module.css';
 import { Plane } from './components/Plane';
 
 interface HabitatProps {
@@ -18,7 +17,7 @@ export const Habitat = (props: HabitatProps) => {
     let contentHeight = props.contentHeight;
 
     return (    
-        <div className="habitat__container" style={{width: `calc(var(--plane-height, ${containerWidth}) * 1vmin)`, height: `calc(var(--plane-height, ${containerHeight}) * 1vmin)`}}>
+        <div className={styles.container} style={{width: `calc(var(--plane-height, ${containerWidth}) * 1vmin)`, height: `calc(var(--plane-height, ${containerHeight}) * 1vmin)`}}>
             <Plane contentWidth={contentWidth} contentHeight={contentHeight}></Plane>
         </div>
     )

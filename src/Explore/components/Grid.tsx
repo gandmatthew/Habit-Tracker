@@ -1,4 +1,4 @@
-import "./Grid.css"
+import styles from "./Grid.module.css"
 
 interface GridProps {
     habitats: Array<any>
@@ -9,10 +9,10 @@ export const Grid = (props : GridProps) => {
     let habitats = props.habitats;
     
     return (
-        <div className="grid__container">
+        <div className={styles.container}>
             {habitats.map((habitat, key) => {
                 return (
-                    <div className="grid__item" key={key}>
+                    <div className={styles.item} key={key}>
                         <p>
                             {habitat}
                         </p>
