@@ -5,9 +5,9 @@ import React, { useRef } from 'react';
 
 import firebase from "firebase/compat/app";
 // Required for side-effects
-import { getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, User} from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCWWqVfktZnAW3fze74sODCxmvIMVdkw5Y",
@@ -25,6 +25,7 @@ const firebaseConfig = {
 export const LoginForm = () => {
     //initialize all data to a value
     const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
     const auth = getAuth(app);
     const email = useRef(null);
     const password = useRef(null);
@@ -33,6 +34,26 @@ export const LoginForm = () => {
 
     const {signedIn, setSignedIn} = useContext(UserContext)
     const [isLoggedin, setLogin] = useState(false);
+
+    onAuthStateChanged(auth, (user) => {
+    if (user) {
+        setSignedIn(true)
+        user.reload();
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const uid = user.uid;
+        // ...
+    } else {
+        setSignedIn(false)
+    }
+    });
+
+    async function add_user(user: User){
+        await setDoc(doc(db, user.email, "user_data"),
+        {habit: "habits",
+        friends: "friends"
+        });
+    }
 
     function loginUser() {
         setSignedIn(true)
@@ -50,23 +71,26 @@ export const LoginForm = () => {
                 alert(email.current.value + password.current.value)
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                alert(errorCode + errorMessage);
+                alert("error in login"+errorCode + errorMessage);
             });
         }else{
 
             if (password.current.value != confirm.current.value){
-                alert 
+                alert("passwords do not match");
             }
             createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
             .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
+                add_user(user)
+                //user.email
+                //create user in database
                 // ...
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                alert(errorCode + errorMessage);
+                alert("error in sign up"+errorCode + errorMessage);
                 // ..
             });
         }
@@ -121,3 +145,15 @@ export const LoginForm = () => {
         </div>
     )
 }
+
+
+//code to sign out
+// import { getAuth, signOut } from "firebase/auth";
+
+// const auth = getAuth();
+// signOut(auth).then(() => {
+//   // Sign-out successful.
+// }).catch((error) => {
+//   // An error happened.
+// });
+

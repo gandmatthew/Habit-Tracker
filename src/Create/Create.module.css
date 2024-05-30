@@ -44,3 +44,11 @@
     background: white;
     text-align: center;
 } */
+
+.habitForm__form {
+    margin: 1vh 0 1vh 0;
+    padding: 2.5vh;
+    font-size: 3.6vh;
+    border: 3;
+    font-family: "Roboto", sans-serif;
+}
