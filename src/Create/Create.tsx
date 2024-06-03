@@ -4,7 +4,7 @@ import { Plane } from "../assets/habitat/components/Plane";
 import { Navbar } from "../assets/navbar/Navbar";
 import styles from "./Create.module.css"
 import { User, getAuth, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, doc, setDoc, updateDoc, serverTimestamp, FieldValue, addDoc, CollectionReference, DocumentData} from "firebase/firestore"; 
+import { getFirestore, doc, setDoc, updateDoc, serverTimestamp, FieldValue, addDoc, CollectionReference, DocumentData, DocumentReference} from "firebase/firestore"; 
 import { collection } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 
@@ -21,6 +21,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth();
 
 
 
@@ -34,35 +35,42 @@ interface SaplingCoordinatesType {
     y: 0
   });
 
-async function add_habit(user: User, data: { habit: { habit_name: any; creation_date: FieldValue; habit_length: number; }; }, userHabitref: CollectionReference<DocumentData, DocumentData> | CollectionReference<{ habit: { habit_name: any; creation_date: FieldValue; habit_length: number; }; }, DocumentData>){
-    await addDoc(userHabitref, data);
-    //const usersCollectionRef = collection(db, 'users');
+  async function add_habit(user: any, data: { habit: { habit_name: any; creation_date: any; habit_length: number; }; }, userHabitref: firebase.firestore.CollectionReference<firebase.firestore.DocumentData>) {
+    alert("before adding");
+    try {
+        await setDoc(userHabitref, data, { merge: true });
+        alert("added")
+    } catch (error) {
+        console.error("Error adding document: ", error);
+        alert("Error adding document");
+    }
 }
 
 export const Create = () => {
-    const auth = getAuth();
-    const habit = useRef(null);
-    
+    const habit = useRef<HTMLInputElement>(null);
 
-
-    function plantSapling(event: any) {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-              // User is signed in, see docs for a list of available properties
-              // https://firebase.google.com/docs/reference/js/auth.user
-                const userHabitref = collection(db, user.email);
-              
-                const data = {habit: {"habit_name": habit.current.value, 
-                            "creation_date": serverTimestamp(),
-                            "habit_length": 0}}
-                add_habit(user, data, userHabitref);
-                user.email;
-            } else {
-                alert("error while planting")
-            }
-          });
+    const plantSapling = async (event: any) => {
+        event.preventDefault();
+        const auth = getAuth();
+        const user = auth.currentUser;
+        if (user) {
+            const userHabitref = doc(db, user.email, "user_data");
+            const habit_name = "habit : "+habit.current.value;
+            const data = {
+                [habit_name]: {
+                    habit_name: habit.current ? habit.current.value : "", 
+                    creation_date: serverTimestamp(),
+                    habit_length: 0
+                }
+            };
+            alert("adding habit")
+            await add_habit(user, data, userHabitref);
+        } else {
+            alert("error while planting");
+        }
         console.log("x, y", event.clientX, event.clientY);
-    }
+    };
+
 
     return (
         <div>
