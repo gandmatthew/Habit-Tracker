@@ -38,19 +38,15 @@ export const LoginForm = () => {
     onAuthStateChanged(auth, (user) => {
     if (user) {
         setSignedIn(true)
-        user.reload();
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
         const uid = user.uid;
-        // ...
     } else {
         setSignedIn(false)
     }
     });
 
     async function add_user(user: User){
-        await setDoc(doc(db, user.email, "user_data"),
-        {habit: "habits",
+        await setDoc(doc(db, user.email),
+        {
         friends: "friends"
         });
     }
@@ -59,13 +55,10 @@ export const LoginForm = () => {
         setSignedIn(true)
         if (isLoggedin){
             alert("in handler"+ email.current.value + password.current.value)
-            //alert('A name was submitted: ' + email.current.value + password.current.value + confirm.current.value);
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
             .then((userCredential) => {
-                // Signed in 
                 const user = userCredential.user;
                 alert("signed in")
-                // ...
             })
             .catch((error) => {
                 alert(email.current.value + password.current.value)

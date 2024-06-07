@@ -38,7 +38,7 @@ interface SaplingCoordinatesType {
   async function add_habit(user: any, data: { habit: { habit_name: any; creation_date: any; habit_length: number; }; }, userHabitref: firebase.firestore.CollectionReference<firebase.firestore.DocumentData>) {
     alert("before adding");
     try {
-        await setDoc(userHabitref, data, { merge: true });
+        await addDoc(userHabitref, data, { merge: true });
         alert("added")
     } catch (error) {
         console.error("Error adding document: ", error);
@@ -54,16 +54,16 @@ export const Create = () => {
         const auth = getAuth();
         const user = auth.currentUser;
         if (user) {
-            const userHabitref = doc(db, user.email, "user_data");
-            const habit_name = "habit : "+habit.current.value;
+            const userHabitref = collection(db, user.email);
+            const habit_name = "habit : "+ habit.current.value;
             const data = {
                 [habit_name]: {
                     habit_name: habit.current ? habit.current.value : "", 
                     creation_date: serverTimestamp(),
-                    habit_length: 0
+                    habit_length: 0,
+                    habit: true
                 }
             };
-            alert("adding habit")
             await add_habit(user, data, userHabitref);
         } else {
             alert("error while planting");
