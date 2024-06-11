@@ -35,20 +35,3 @@
     padding-top: 2vh;
     overflow: hidden;
 }
-
-/* .sticky {
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    z-index: 3;
-    background: white;
-    text-align: center;
-} */
-
-.habitForm__form {
-    margin: 1vh 0 1vh 0;
-    padding: 2.5vh;
-    font-size: 3.6vh;
-    border: 3;
-    font-family: "Roboto", sans-serif;
-}

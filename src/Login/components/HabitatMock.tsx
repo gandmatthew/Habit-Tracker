@@ -1,9 +1,9 @@
-import './HabitatMock.css';
+import styles from './HabitatMock.module.css'
 
 export const HabitatMock = () => {
 
     return (
-        <div className="habitatMock__plane">
+        <div className={styles.plane}>
         </div>
     )
 }

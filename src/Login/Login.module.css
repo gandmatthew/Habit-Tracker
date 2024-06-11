@@ -1,17 +1,17 @@
-.login__center {
+.center {
     position: absolute;
     top: 30vh;
     left: 30vw;
 }
 
-.login__left {
+.left {
     display: flex;
     width: 65vw;
     left: 0;
     overflow: hidden;
 }
 
-.login__right {
+.right {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +20,7 @@
     background: #363636;
 }
 
-.login__split {
+.split {
     right: 0;
     height: 100vh;
     position: fixed;

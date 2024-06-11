@@ -8,12 +8,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Account } from './Account/Account';
 
 interface UserContextType {
-  signedIn: boolean;
-  setSignedIn: Dispatch<SetStateAction<boolean>>;
+  signedIn: string;
+  setSignedIn: Dispatch<SetStateAction<string>>;
 }
 
 export const UserContext = createContext<UserContextType>({
-  signedIn: false,
+  signedIn: 'false',
   setSignedIn: () => {}
 });
 

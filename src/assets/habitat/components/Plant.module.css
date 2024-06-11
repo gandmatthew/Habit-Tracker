@@ -1,10 +1,10 @@
-.plane {
-    position: relative;
-    background: #818c3c;
-    transform: rotateX(calc(var(--rotate-x, -24) * 1deg)) rotateY(calc(var(--rotate-y, -24) * 1deg)) rotateX(90deg) translate3d(0, 0, 0);
-    transform-style: preserve-3d;
+.dot {
+    height: 25px;
+    width: 25px;
+    background-color: #FF0000;
+    border-radius: 50%;
+    display: inline-block;
 }
-
 .smallTree {
     width: 0; 
     height: 0; 

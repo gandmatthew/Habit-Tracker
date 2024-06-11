@@ -1,96 +1,74 @@
 import { useContext, useState } from "react"
-import "./LoginForm.css"
 import { UserContext } from "../../App";
-import React, { useRef } from 'react';
+import styles from './LoginForm.module.css'
+import { configureStore } from "@reduxjs/toolkit";
 
-import firebase from "firebase/compat/app";
-// Required for side-effects
-import { getAuth , createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, User} from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyCWWqVfktZnAW3fze74sODCxmvIMVdkw5Y",
-    authDomain: "habit-tracker-92d90.firebaseapp.com",
-    projectId: "habit-tracker-92d90",
-    storageBucket: "habit-tracker-92d90.appspot.com",
-    messagingSenderId: "793800474652",
-    appId: "1:793800474652:web:b92787bce57fe7860b9fd9",
-    measurementId: "G-FB176MYZR7",
-    databaseURL: "https://DATABASE_NAME.firebaseio.com"
-  };
-
-
+interface Item {
+    email: string;
+    password: string;
+}
 
 export const LoginForm = () => {
-    //initialize all data to a value
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const auth = getAuth(app);
-    const email = useRef(null);
-    const password = useRef(null);
-    const confirm = useRef(null);
-
 
     const {signedIn, setSignedIn} = useContext(UserContext)
-    const [isLoggedin, setLogin] = useState(false);
+    const [showLogin, setLogin] = useState(false);
 
-    onAuthStateChanged(auth, (user) => {
-    if (user) {
-        setSignedIn(true)
-        const uid = user.uid;
-    } else {
-        setSignedIn(false)
-    }
-    });
+    const verifyUser = async(event: any) => {
+        event.preventDefault();
+        
+        var email = document.getElementById("login_email")?.value
+        var email = email.toLowerCase();
+        var password = document.getElementById("login_password")?.value
 
-    async function add_user(user: User){
-        await setDoc(doc(db, user.email),
-        {
-        friends: "friends"
-        });
-    }
-
-    function loginUser() {
-        setSignedIn(true)
-        if (isLoggedin){
-            alert("in handler"+ email.current.value + password.current.value)
-            signInWithEmailAndPassword(auth, email.current.value, password.current.value)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                alert("signed in")
-            })
-            .catch((error) => {
-                alert(email.current.value + password.current.value)
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                alert("error in login"+errorCode + errorMessage);
-            });
-        }else{
-
-            if (password.current.value != confirm.current.value){
-                alert("passwords do not match");
-            }
-            createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
-            .then((userCredential) => {
-                // Signed up 
-                const user = userCredential.user;
-                add_user(user)
-                //user.email
-                //create user in database
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                alert("error in sign up"+errorCode + errorMessage);
-                // ..
-            });
+        const data = await fetch('http://localhost:4000/loginUser', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({email: email, password: password})
+        })
+        const resp = await data.json()
+        console.log(resp)
+        if (resp === 'SUCCESS') {
+            setSignedIn(email)
+        } else {
+            setSignedIn('false')
         }
+    }
+
+    const createUser = async(event: any) => {
+        event.preventDefault();
+        
+        var email = document.getElementById("register_email")?.value
+        var email = email.toLowerCase();
+        var password = document.getElementById("register_password")?.value
+        var confirm_password = document.getElementById("register_confirm-password")?.value
+
+        if (password === confirm_password) {
+
+            const data = await fetch('http://localhost:4000/createUser', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({email: email, password: password})
+            })
+            const resp = await data.json()
+            console.log(resp)
+            if (resp === 'SUCCESS') {
+                setSignedIn(email)
+            } else {
+                setSignedIn('false')
+            }
+        }
+
+        
     }
     
     function toggleLogin() {
-        if (isLoggedin) {
+        if (showLogin) {
             setLogin(false)
         } else {
             setLogin(true)
@@ -99,54 +77,42 @@ export const LoginForm = () => {
 
     return (
         <div>
-            {isLoggedin ?
+            {showLogin ?
 
             <form>
                 <p>
-                    <input className="loginForm__form" type="text" placeholder="Email" name="email" ref={email} required/>
+                    <input className={styles.form} type="text" placeholder="Email" id="login_email" required/>
                 </p>
                 <p>
-                    <input className="loginForm__form" type="password" placeholder="Password" name="password" ref={password} required/>
+                    <input className={styles.form} type="password" placeholder="Password" id="login_password" required/>
                 </p>
                 <p>
-                    <button onClick={loginUser}>Login</button>
+                    <button onClick={verifyUser}>Login</button>
                 </p>
                 
-                <p>Need an account? <span className="loginForm__blue" onClick={toggleLogin}>Register</span></p>
+                <p className={styles.p}>Need an account? <span className={styles.textBlue} onClick={toggleLogin}>Register</span></p>
             </form>
 
             :
 
             <form>
                 <p>
-                    <input className="loginForm__form" type="text" placeholder="Email" name="email" ref={email} required/>
+                    <input className={styles.form} type="text" placeholder="Email" id="register_email" required/>
                 </p>
                 <p>
-                    <input className="loginForm__form" type="password" placeholder="Password" name="password" ref={password} required/>
+                    <input className={styles.form} type="password" placeholder="Password" id="register_password" required/>
                 </p>
                 <p>
-                    <input className="loginForm__form" type="password" placeholder="Confirm Password" name="confirm-password" ref={confirm} required/>
+                    <input className={styles.form} type="password" placeholder="Confirm Password" id="register_confirm-password" required/>
                 </p>    
                 <p>
-                    <button onClick={loginUser}>Register</button>
+                    <button onClick={createUser}>Register</button>
                 </p>
 
-                <p>Have an account? <span className="loginForm__blue" onClick={toggleLogin}>Login</span></p>
+                <p className={styles.p}>Have an account? <span className={styles.textBlue} onClick={toggleLogin}>Login</span></p>
             </form>
 
             }
         </div>
     )
 }
-
-
-//code to sign out
-// import { getAuth, signOut } from "firebase/auth";
-
-// const auth = getAuth();
-// signOut(auth).then(() => {
-//   // Sign-out successful.
-// }).catch((error) => {
-//   // An error happened.
-// });
-

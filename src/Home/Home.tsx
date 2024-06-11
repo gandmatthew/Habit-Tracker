@@ -16,12 +16,7 @@ export const Home = () => {
             <div className={styles.footer}>
                 <Footer/>
             </div>
-            
-            <p>Example</p>
-            <p>Example</p>
-            <p>Example</p>
-            <p>Example</p>
-            <p>Example</p>
+        
             
         </div>
     )

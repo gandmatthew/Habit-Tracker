@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 
 export const Account = () => {
+    
     useEffect( () => {
         fetchItems()
     }, [])
@@ -24,14 +25,12 @@ export const Account = () => {
     return (
         <div>
             {items.map(item => (
-                <h1 key={item.username}>
-                    Hello {item.username}
-                </h1>
+                <div>{item.email}</div>
             ))}
         </div>
     )
 }
 
 interface Item {
-    username: string;
+    email: string;
 }

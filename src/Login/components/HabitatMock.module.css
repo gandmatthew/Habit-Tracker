@@ -1,4 +1,4 @@
-.habitatMock__plane {
+.plane {
     background: #818c3c;
     height: calc(var(--plane-height, 45) * 1vmin);
     width: calc(var(--plane-width, 45) * 1vmin);
